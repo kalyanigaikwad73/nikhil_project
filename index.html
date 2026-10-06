@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WindowCraft Solutions | Official Window Store</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+         :root {
+            --primary: #0284c7;
+            --secondary: #0f172a;
+            --accent: #16a34a;
+            --dark: #1e293b;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            background-color: #f1f5f9;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        nav {
+            background: var(--secondary);
+            color: white;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #38bdf8;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .nav-links a:hover {
+            color: #38bdf8;
+        }
+        
+        .btn-auth {
+            background: var(--primary);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.8)), url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+            color: white;
+            text-align: center;
+            padding: 90px 20px;
+        }
+        
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+            font-weight: 800;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            color: #e2e8f0;
+            max-width: 650px;
+            margin: 0 auto 25px;
+        }
+        
+        .hero-btn {
+            background: #f59e0b;
+            color: var(--secondary);
+            padding: 12px 30px;
+            font-size: 16px;
+            font-weight: 700;
+            border-radius: 25px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            color: var(--secondary);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            color: #64748b;
+            margin-bottom: 40px;
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+        }
+        
+        .product-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .product-info {
+            padding: 18px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .product-info h3 {
+            color: var(--secondary);
+            font-size: 18px;
+            margin-bottom: 6px;
+        }
+        
+        .product-info p {
+            color: #64748b;
+            font-size: 13px;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+        
+        .price-tag {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+        }
+        
+        .book-btn {
+            background: var(--accent);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        
+        .forms-wrapper {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .form-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+        
+        .form-card h3 {
+            margin-bottom: 15px;
+            color: var(--secondary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            outline: none;
+        }
+        
+        .submit-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            border-radius: 6px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        
+        .auto-box {
+            background: #dcfce7;
+            border-left: 5px solid var(--accent);
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 6px;
+            display: none;
+            color: #166534;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 400px;
+            position: relative;
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            cursor: pointer;
+            font-size: 20px;
+            color: #64748b;
+        }
+        
+        .switch-link {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 13px;
+            color: #64748b;
+        }
+        
+        .switch-link a {
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        
+        footer {
+            background: var(--secondary);
+            color: #cbd5e1;
+            text-align: center;
+            padding: 25px;
+            margin-top: 60px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo"><i class="fa-solid fa-square-poll-vertical"></i> WindowCraft</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#products">16 Products</a></li>
+            <li><a href="#booking">Order & Pay</a></li>
+            <li><a href="#inquiry">Inquiry</a></li>
+        </ul>
+        <div>
+            <button class="btn-auth" onclick="openModal('loginModal')">Login</button>
+            <button class="btn-auth" style="background:var(--accent)" onclick="openModal('signupModal')">Sign Up</button>
+        </div>
+    </nav>
+
+    <section class="hero" id="home">
+        <h1>Official WindowCraft Architecture Store</h1>
+        <p>Explore 16 Premium Window Designs, Get Instant Quotation & Order Online with Easy Payment Options.</p>
+        <a href="#booking" class="hero-btn"><i class="fa-solid fa-cart-shopping"></i> Order Window Online</a>
+    </section>
+
+    <!-- 16 Products Catalogue -->
+    <div class="container" id="products">
+        <h2 class="section-title">Our Premium Catalogue (16 Window Designs)</h2>
+        <p class="section-subtitle">High durability architectural, acoustic, and designer glass solutions</p>
+
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=600&q=80" class="product-img" alt="Bay Window">
+                <div class="product-info">
+                    <h3>3D Villa Bay Window</h3>
+                    <p>Panoramic outward projection window for modern luxury interiors.</p>
+                    <div class="price-tag"><span>₹950 / sq.ft</span> <a href="#booking" class="book-btn">Order</a></div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=600&q=80" class="product-img" alt="Skylight Glass">
+                <div class="product-info">
+                    <h3>Skylight Ceiling Glass</h3>
+                    <p>Roof glass panel designed for maximum natural daylight and aesthetics.</p>
+                    <div class="price-tag"><span>₹1,100 / sq.ft</span> <a href="#booking" class="book-btn">Order</a></div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1503708928676-1b08e0851bc1?auto=format&fit=crop&w=600&q=80" class="product-img" alt="Sliding Window">
+                <div class="product-info">
+                    <h3>3-Track Aluminum Sliding</h3>
+                    <p>Smooth balcony sliding system with built-in stainless steel mosquito net.</p>
+                    <div class="price-tag"><span>₹520 / sq.ft</span> <a href="#booking" class="book-btn">Order</a></div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=600&q=80" class="product-img" alt="Soundproof Window">
+                <div class="product-info">
+                    <h3>UPVC Acoustic Soundproof</h3>
+                    <p>Double-glazed acoustic insulation blocking 90% outside noise.</p>
+                    <div class="price-tag"><span>₹680 / sq.ft</span> <a href="#booking" class="book-btn">Order</a></div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1509644851169-2acc08aa25b5?auto=format&fit=crop&w=600&q=80" class="product-img" alt="French Casement">
+                <div class="product-info">
+                    <h3>French Openable Casement</h3>
+                    <p>Classic full-opening side hinged window for maximum airflow.</p>
+                    <div class="price-tag"><span>₹580 / sq.ft</span> <a href="#booking" class="book-btn">Order</a></div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=600&q=80" class="product-img" alt="Tilt and Turn Window">
+                <div class="product-info">
+                    <h3>Tilt & Turn Modern UPVC</h3>
+                    <p>European dual-action window opening top and side.</p>
+                    <div class="price-tag"><span>₹750 / sq.ft</span> <a href="#booking" class="book-btn">Order</a></div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=600&q=80" class="product-img" alt="Fixed Picture Window">
+                <div class="product-info">
+                    <h3>Fixed Architectural Picture</h3>
+                    <p>Frameless floor-to-ceiling scenic clear glass window.</p>
+                    <div class="price-tag"><span>₹400 / sq.ft</span> <a href="#booking" class="book-btn">Order</a></div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=600&q=80" class="product-img" alt="Frosted Glass">
+                <div class="product-info">
+                    <h3>Frosted Privacy Window</h3>
+                    <p>Translucent privacy glass ideal for bathrooms & office cabins.</p>
+                    <div class="price-tag"><span>₹490 / sq.ft</span> <a href="#booking" class="book-btn">Order</a></div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=600&q=80" class="product-img" alt="Arch Window">
+                <div class="product-info">
+                    <h3>Arch Design Curved Top</h3>
+                    <p>Custom arched top frame for luxury royal home elevation.</p>
+                    <div class="price-tag"><span>₹850 / sq.ft</span> <a href="#booking" class="book-btn">Order</a></div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1600573472591-ee6b563aaec9?auto=format&fit=crop&w=600&q=80" class="product-img" alt="Louvered Window">
+                <div class="product-info">
+                    <h3>Adjustable Louvered Window</h3>
+                    <p>Glass slats for controlled ventilation in utility areas.</p>
+                    <div class="price-tag"><span>₹350 / sq.ft</span> <a href="#booking" class="book-btn">Order</a></div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=600&q=80" class="product-img" alt="Thermal Glass">
+                <div class="product-info">
+                    <h3>Thermal Reflective Glass</h3>
+                    <p>UV and heat blocking glass coating for thermal energy saving.</p>
+                    <div class="price-tag"><span>₹720 / sq.ft</span> <a href="#booking" class="book-btn">Order</a></div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=600&q=80" class="product-img" alt="Wooden UPVC Frame">
+                <div class="product-info">
+                    <h3>Wooden Texture UPVC Frame</h3>
+                    <p>Natural wood finish look with durable weatherproof UPVC.</p>
+                    <div class="price-tag"><span>₹640 / sq.ft</span> <a href="#booking" class="book-btn">Order</a></div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1503708928676-1b08e0851bc1?auto=format&fit=crop&w=600&q=80" class="product-img" alt="Georgian Bar Window">
+                <div class="product-info">
+                    <h3>Georgian Grill Bar Window</h3>
+                    <p>Decorative internal grill bars for traditional cottage aesthetics.</p>
+                    <div class="price-tag"><span>₹610 / sq.ft</span> <a href="#booking" class="book-btn">Order</a></div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=600&q=80" class="product-img" alt="Awning Window">
+                <div class="product-info">
+                    <h3>Top-Hung Awning Window</h3>
+                    <p>Hinged at top opening outwards, perfect for rainy season air.</p>
+                    <div class="price-tag"><span>₹540 / sq.ft</span> <a href="#booking" class="book-btn">Order</a></div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?auto=format&fit=crop&w=600&q=80" class="product-img" alt="Bi-Fold Glass Wall">
+                <div class="product-info">
+                    <h3>Bi-Fold Folding Glass Wall</h3>
+                    <p>Multiple folding panels to create wide open indoor-outdoor transition.</p>
+                    <div class="price-tag"><span>₹1,250 / sq.ft</span> <a href="#booking" class="book-btn">Order</a></div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1509644851169-2acc08aa25b5?auto=format&fit=crop&w=600&q=80" class="product-img" alt="Fire Rated Window">
+                <div class="product-info">
+                    <h3>Fire-Rated Heavy Steel Window</h3>
+                    <p>Heavy duty fire safety glass window for commercial buildings.</p>
+                    <div class="price-tag"><span>₹980 / sq.ft</span> <a href="#booking" class="book-btn">Order</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Booking & Inquiry -->
+    <div class="container">
+        <div class="forms-wrapper">
+
+            <div class="form-card" id="booking">
+                <h3><i class="fa-solid fa-credit-card" style="color:var(--accent)"></i> Online Order & Payment</h3>
+                <form id="bookingForm">
+                    <div class="form-group"><label>Customer Name</label><input type="text" id="bName" required placeholder="Enter Full Name"></div>
+                    <div class="form-group"><label>Mobile Number</label><input type="tel" id="bPhone" required placeholder="Enter 10-digit Mobile Number"></div>
+                    <div class="form-group">
+                        <label>Select Window Model</label>
+                        <select id="bModel">
+                            <option>3D Villa Bay Window (₹950/sqft)</option>
+                            <option>Skylight Ceiling Glass (₹1100/sqft)</option>
+                            <option>3-Track Aluminum Sliding (₹520/sqft)</option>
+                            <option>UPVC Acoustic Soundproof (₹680/sqft)</option>
+                            <option>French Openable Casement (₹580/sqft)</option>
+                            <option>Tilt & Turn Modern UPVC (₹750/sqft)</option>
+                            <option>Fixed Architectural Picture (₹400/sqft)</option>
+                            <option>Frosted Privacy Window (₹490/sqft)</option>
+                            <option>Arch Design Curved Top (₹850/sqft)</option>
+                            <option>Adjustable Louvered Window (₹350/sqft)</option>
+                            <option>Thermal Reflective Glass (₹720/sqft)</option>
+                            <option>Wooden Texture UPVC Frame (₹640/sqft)</option>
+                            <option>Georgian Grill Bar Window (₹610/sqft)</option>
+                            <option>Top-Hung Awning Window (₹540/sqft)</option>
+                            <option>Bi-Fold Folding Glass Wall (₹1250/sqft)</option>
+                            <option>Fire-Rated Heavy Steel Window (₹980/sqft)</option>
+                        </select>
+                    </div>
+                    <div class="form-group"><label>Area Size (Sq.Ft)</label><input type="number" id="bSqft" placeholder="e.g. 50" required></div>
+                    <div class="form-group">
+                        <label>Select Payment Option</label>
+                        <select id="bPayment">
+                            <option>UPI (Google Pay / PhonePe / Paytm)</option>
+                            <option>Debit / Credit Card</option>
+                            <option>Pay Cash on Delivery (COD)</option>
+                        </select>
+                    </div>
+                    <div class="form-group"><label>Delivery Address</label><textarea id="bAddress" rows="2" required placeholder="Enter Site Address"></textarea></div>
+                    <button type="submit" class="submit-btn" style="background:var(--accent)"><i class="fa-solid fa-check-circle"></i> Confirm Order & Payment</button>
+                </form>
+                <div class="auto-box" id="bBox">
+                    <p id="bText"></p>
+                </div>
+            </div>
+
+            <div class="form-card" id="inquiry">
+                <h3><i class="fa-solid fa-paper-plane" style="color:var(--primary)"></i> Quick Inquiry</h3>
+                <form id="inquiryForm">
+                    <div class="form-group"><label>Your Name</label><input type="text" id="iName" required placeholder="Enter Name"></div>
+                    <div class="form-group"><label>Phone Number</label><input type="tel" id="iPhone" required placeholder="Enter Phone Number"></div>
+                    <div class="form-group">
+                        <label>Window Category</label>
+                        <select id="iType">
+                            <option>Sliding Windows</option>
+                            <option>Soundproof Double Glazed</option>
+                            <option>Bay / Skylight Windows</option>
+                            <option>Casement / Awning Windows</option>
+                            <option>Bi-Fold / Commercial Windows</option>
+                        </select>
+                    </div>
+                    <div class="form-group"><label>Requirement Details</label><textarea id="iMsg" rows="3" placeholder="Enter requirement or dimensions..."></textarea></div>
+                    <button type="submit" class="submit-btn"><i class="fa-solid fa-envelope"></i> Send Inquiry</button>
+                </form>
+                <div class="auto-box" id="iBox">
+                    <p id="iText"></p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('loginModal')">&times;</span>
+            <h3 style="margin-bottom:15px;"><i class="fa-solid fa-lock"></i> User Login</h3>
+            <form id="loginForm">
+                <div class="form-group"><label>Email Address</label><input type="email" id="lEmail" required placeholder="name@gmail.com"></div>
+                <div class="form-group"><label>Password</label><input type="password" id="lPass" required placeholder="••••••••"></div>
+                <button type="submit" class="submit-btn">Login</button>
+            </form>
+            <div class="switch-link">
+                Don't have an account? <a onclick="switchModal('loginModal', 'signupModal')">Create Account</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div class="modal" id="signupModal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('signupModal')">&times;</span>
+            <h3 style="margin-bottom:15px;"><i class="fa-solid fa-user-plus"></i> Create Account</h3>
+            <form id="signupForm">
+                <div class="form-group"><label>Full Name</label><input type="text" id="sName" required placeholder="Your Full Name"></div>
+                <div class="form-group"><label>Email Address</label><input type="email" id="sEmail" required placeholder="name@gmail.com"></div>
+                <div class="form-group"><label>Create Password</label><input type="password" id="sPass" required placeholder="••••••••"></div>
+                <button type="submit" class="submit-btn" style="background:var(--accent)">Register</button>
+            </form>
+            <div class="switch-link">
+                Already have an account? <a onclick="switchModal('signupModal', 'loginModal')">Login here</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 WindowCraft Official Architectural Systems. College Web Full-Stack Project.</p>
+    </footer>
+
+    <script>
+        function openModal(id) {
+            document.getElementById(id).style.display = 'flex';
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).style.display = 'none';
+        }
+
+        function switchModal(closeId, openId) {
+            closeModal(closeId);
+            openModal(openId);
+        }
+
+        // 1. Signup Form Submission
+        document.getElementById('signupForm').addEventListener('submit', async(e) => {
+            e.preventDefault();
+            const name = document.getElementById('sName').value;
+            const email = document.getElementById('sEmail').value;
+            const password = document.getElementById('sPass').value;
+
+            try {
+                const res = await fetch('/api/signup', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        name,
+                        email,
+                        password
+                    })
+                });
+                const data = await res.json();
+                alert(data.message);
+
+                if (data.success) {
+                    closeModal('signupModal');
+                    openModal('loginModal');
+                    document.getElementById('signupForm').reset();
+                }
+            } catch (err) {
+                alert("Server Error! Please check node server.js console.");
+            }
+        });
+
+        // 2. Login Form Submission
+        document.getElementById('loginForm').addEventListener('submit', async(e) => {
+            e.preventDefault();
+            const email = document.getElementById('lEmail').value;
+            const password = document.getElementById('lPass').value;
+
+            try {
+                const res = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        email,
+                        password
+                    })
+                });
+                const data = await res.json();
+                alert(data.message);
+
+                if (data.success) {
+                    closeModal('loginModal');
+                    document.getElementById('loginForm').reset();
+                }
+            } catch (err) {
+                alert("Server Error! Please check node server.js console.");
+            }
+        });
+
+        // 3. Online Booking Submission
+        document.getElementById('bookingForm').addEventListener('submit', async(e) => {
+            e.preventDefault();
+            try {
+                const res = await fetch('/api/book-window', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        customerName: document.getElementById('bName').value,
+                        phone: document.getElementById('bPhone').value,
+                        windowModel: document.getElementById('bModel').value,
+                        sqft: document.getElementById('bSqft').value,
+                        paymentMode: document.getElementById('bPayment').value,
+                        address: document.getElementById('bAddress').value
+                    })
+                });
+                const data = await res.json();
+                document.getElementById('bBox').style.display = 'block';
+                document.getElementById('bText').innerText = data.autoReply;
+                document.getElementById('bookingForm').reset();
+            } catch (err) {
+                alert("Server Error!");
+            }
+        });
+
+        // 4. Inquiry Form Submission
+        document.getElementById('inquiryForm').addEventListener('submit', async(e) => {
+            e.preventDefault();
+            try {
+                const res = await fetch('/api/inquiry', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        name: document.getElementById('iName').value,
+                        phone: document.getElementById('iPhone').value,
+                        windowType: document.getElementById('iType').value,
+                        message: document.getElementById('iMsg').value
+                    })
+                });
+                const data = await res.json();
+                document.getElementById('iBox').style.display = 'block';
+                document.getElementById('iText').innerText = data.autoReply;
+                document.getElementById('inquiryForm').reset();
+            } catch (err) {
+                alert("Server Error!");
+            }
+        });
+    </script>
+</body>
+
+</html>
